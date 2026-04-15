@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ADAS Integrated System: Исходный файл src/obd_parser.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">ADAS Integrated System<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('obd__parser_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">obd_parser.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="obd__parser_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="struct_telemetry_data.html">   14</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_telemetry_data.html">TelemetryData</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="struct_telemetry_data.html#a67ea02e38730f2c445838cb6963b825b">   15</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_telemetry_data.html#a67ea02e38730f2c445838cb6963b825b">speed</a>;        </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="struct_telemetry_data.html#a7e08b2818295c0d005c12953a341c684">   16</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_telemetry_data.html#a7e08b2818295c0d005c12953a341c684">rpm</a>;          </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="struct_telemetry_data.html#aecf2508316ccc37409885691eb3a9865">   17</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_telemetry_data.html#aecf2508316ccc37409885691eb3a9865">g_force_lat</a>;  </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="struct_telemetry_data.html#a198ad03565babf431fa96475f4f748f6">   18</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_telemetry_data.html#a198ad03565babf431fa96475f4f748f6">g_force_lon</a>;  </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="struct_telemetry_data.html#a937505fe5bd5c20ad86e7907861348d4">   19</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_telemetry_data.html#a937505fe5bd5c20ad86e7907861348d4">throttle</a>;     </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>};</div>
+</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_o_b_d_parser.html">   26</a></span><span class="keyword">class </span><a class="code hl_function" href="class_o_b_d_parser.html#a5f48496114b240282d5edef8cc13e19b">OBDParser</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_o_b_d_parser.html#a5f48496114b240282d5edef8cc13e19b">   32</a></span>    <a class="code hl_function" href="class_o_b_d_parser.html#a5f48496114b240282d5edef8cc13e19b">OBDParser</a>(<span class="keyword">const</span> std::string&amp; file_path);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_o_b_d_parser.html#ac751fc2cf13ae65d31d651d5d59dc5e2">   38</a></span>    <a class="code hl_struct" href="struct_telemetry_data.html">TelemetryData</a> <a class="code hl_function" href="class_o_b_d_parser.html#ac751fc2cf13ae65d31d651d5d59dc5e2">getNextTick</a>();</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
+</div>
+<div class="ttc" id="aclass_o_b_d_parser_html_a5f48496114b240282d5edef8cc13e19b"><div class="ttname"><a href="class_o_b_d_parser.html#a5f48496114b240282d5edef8cc13e19b">OBDParser::OBDParser</a></div><div class="ttdeci">OBDParser(const std::string &amp;file_path)</div><div class="ttdoc">Открывает файл и считывает заголовки.</div></div>
+<div class="ttc" id="aclass_o_b_d_parser_html_ac751fc2cf13ae65d31d651d5d59dc5e2"><div class="ttname"><a href="class_o_b_d_parser.html#ac751fc2cf13ae65d31d651d5d59dc5e2">OBDParser::getNextTick</a></div><div class="ttdeci">TelemetryData getNextTick()</div><div class="ttdoc">Возвращает следующую строку данных.</div></div>
+<div class="ttc" id="astruct_telemetry_data_html"><div class="ttname"><a href="struct_telemetry_data.html">TelemetryData</a></div><div class="ttdoc">Данные об автомобиле в конкретный момент времени.</div><div class="ttdef"><b>Определения</b> <a href="#l00014">obd_parser.h:14</a></div></div>
+<div class="ttc" id="astruct_telemetry_data_html_a198ad03565babf431fa96475f4f748f6"><div class="ttname"><a href="struct_telemetry_data.html#a198ad03565babf431fa96475f4f748f6">TelemetryData::g_force_lon</a></div><div class="ttdeci">float g_force_lon</div><div class="ttdoc">Продольная перегрузка (G).</div><div class="ttdef"><b>Определения</b> <a href="#l00018">obd_parser.h:18</a></div></div>
+<div class="ttc" id="astruct_telemetry_data_html_a67ea02e38730f2c445838cb6963b825b"><div class="ttname"><a href="struct_telemetry_data.html#a67ea02e38730f2c445838cb6963b825b">TelemetryData::speed</a></div><div class="ttdeci">float speed</div><div class="ttdoc">Скорость в км/ч</div><div class="ttdef"><b>Определения</b> <a href="#l00015">obd_parser.h:15</a></div></div>
+<div class="ttc" id="astruct_telemetry_data_html_a7e08b2818295c0d005c12953a341c684"><div class="ttname"><a href="struct_telemetry_data.html#a7e08b2818295c0d005c12953a341c684">TelemetryData::rpm</a></div><div class="ttdeci">float rpm</div><div class="ttdoc">Обороты двигателя</div><div class="ttdef"><b>Определения</b> <a href="#l00016">obd_parser.h:16</a></div></div>
+<div class="ttc" id="astruct_telemetry_data_html_a937505fe5bd5c20ad86e7907861348d4"><div class="ttname"><a href="struct_telemetry_data.html#a937505fe5bd5c20ad86e7907861348d4">TelemetryData::throttle</a></div><div class="ttdeci">float throttle</div><div class="ttdoc">Положение педали газа (0-100%).</div><div class="ttdef"><b>Определения</b> <a href="#l00019">obd_parser.h:19</a></div></div>
+<div class="ttc" id="astruct_telemetry_data_html_aecf2508316ccc37409885691eb3a9865"><div class="ttname"><a href="struct_telemetry_data.html#aecf2508316ccc37409885691eb3a9865">TelemetryData::g_force_lat</a></div><div class="ttdeci">float g_force_lat</div><div class="ttdoc">Поперечная перегрузка (G).</div><div class="ttdef"><b>Определения</b> <a href="#l00017">obd_parser.h:17</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="obd__parser_8h.html">obd_parser.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

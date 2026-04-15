@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ADAS Integrated System: Структура OBDRecord</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">ADAS Integrated System<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('struct_o_b_d_record.html','','struct_o_b_d_record-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Структура OBDRecord</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="obd__parser_8h_source.html">obd_parser.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:a71d08a0dbdfcad0eb2559a322ff176b7" id="r_a71d08a0dbdfcad0eb2559a322ff176b7"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a71d08a0dbdfcad0eb2559a322ff176b7">time</a></td></tr>
+<tr class="memitem:a53735ce31686a1021b9cd1fd6046b317" id="r_a53735ce31686a1021b9cd1fd6046b317"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a53735ce31686a1021b9cd1fd6046b317">speed</a></td></tr>
+<tr class="memitem:adecf629e50dd71248adf70f52f5b9c0d" id="r_adecf629e50dd71248adf70f52f5b9c0d"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#adecf629e50dd71248adf70f52f5b9c0d">rpm</a></td></tr>
+<tr class="memitem:a1d7de0bbcc21498900c1ee7333e5f8cc" id="r_a1d7de0bbcc21498900c1ee7333e5f8cc"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a1d7de0bbcc21498900c1ee7333e5f8cc">throttle</a></td></tr>
+<tr class="memitem:a4eebbb339bd02ed8875f1fe595ad069e" id="r_a4eebbb339bd02ed8875f1fe595ad069e"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a4eebbb339bd02ed8875f1fe595ad069e">accel_lon</a></td></tr>
+<tr class="memitem:a2b9fb2dc64d53b9f625124d1d74b0468" id="r_a2b9fb2dc64d53b9f625124d1d74b0468"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a2b9fb2dc64d53b9f625124d1d74b0468">accel_lat</a></td></tr>
+<tr class="memitem:aa2bfc97a10710104461c37d9d4ec71bd" id="r_aa2bfc97a10710104461c37d9d4ec71bd"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#aa2bfc97a10710104461c37d9d4ec71bd">fuel</a></td></tr>
+<tr class="memitem:a44c151630c987675bf75bf53452ab34b" id="r_a44c151630c987675bf75bf53452ab34b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a44c151630c987675bf75bf53452ab34b">driver_style</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00005">5</a></p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Данные класса</h2>
+<a id="a2b9fb2dc64d53b9f625124d1d74b0468" name="a2b9fb2dc64d53b9f625124d1d74b0468"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b9fb2dc64d53b9f625124d1d74b0468">&#9670;&#160;</a></span>accel_lat</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double OBDRecord::accel_lat</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00011">11</a></p>
+
+<p class="reference">Используется в <a class="el" href="dashboard_8cpp_source.html#l00048">Dashboard::draw()</a>, <a class="el" href="obd__parser_8cpp_source.html#l00019">OBDParser::load()</a> и <a class="el" href="main_8cpp_source.html#l00020">obdThreadFunc()</a>.</p>
+
+</div>
+</div>
+<a id="a4eebbb339bd02ed8875f1fe595ad069e" name="a4eebbb339bd02ed8875f1fe595ad069e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eebbb339bd02ed8875f1fe595ad069e">&#9670;&#160;</a></span>accel_lon</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double OBDRecord::accel_lon</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00010">10</a></p>
+
+<p class="reference">Используется в <a class="el" href="dashboard_8cpp_source.html#l00048">Dashboard::draw()</a>, <a class="el" href="obd__parser_8cpp_source.html#l00019">OBDParser::load()</a> и <a class="el" href="main_8cpp_source.html#l00020">obdThreadFunc()</a>.</p>
+
+</div>
+</div>
+<a id="a44c151630c987675bf75bf53452ab34b" name="a44c151630c987675bf75bf53452ab34b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44c151630c987675bf75bf53452ab34b">&#9670;&#160;</a></span>driver_style</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int OBDRecord::driver_style</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00013">13</a></p>
+
+<p class="reference">Используется в <a class="el" href="obd__parser_8cpp_source.html#l00019">OBDParser::load()</a>.</p>
+
+</div>
+</div>
+<a id="aa2bfc97a10710104461c37d9d4ec71bd" name="aa2bfc97a10710104461c37d9d4ec71bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2bfc97a10710104461c37d9d4ec71bd">&#9670;&#160;</a></span>fuel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double OBDRecord::fuel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00012">12</a></p>
+
+<p class="reference">Используется в <a class="el" href="dashboard_8cpp_source.html#l00048">Dashboard::draw()</a> и <a class="el" href="obd__parser_8cpp_source.html#l00019">OBDParser::load()</a>.</p>
+
+</div>
+</div>
+<a id="adecf629e50dd71248adf70f52f5b9c0d" name="adecf629e50dd71248adf70f52f5b9c0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adecf629e50dd71248adf70f52f5b9c0d">&#9670;&#160;</a></span>rpm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double OBDRecord::rpm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00008">8</a></p>
+
+<p class="reference">Используется в <a class="el" href="dashboard_8cpp_source.html#l00048">Dashboard::draw()</a>, <a class="el" href="obd__parser_8cpp_source.html#l00019">OBDParser::load()</a> и <a class="el" href="main_8cpp_source.html#l00020">obdThreadFunc()</a>.</p>
+
+</div>
+</div>
+<a id="a53735ce31686a1021b9cd1fd6046b317" name="a53735ce31686a1021b9cd1fd6046b317"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53735ce31686a1021b9cd1fd6046b317">&#9670;&#160;</a></span>speed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double OBDRecord::speed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00007">7</a></p>
+
+<p class="reference">Используется в <a class="el" href="dashboard_8cpp_source.html#l00048">Dashboard::draw()</a>, <a class="el" href="obd__parser_8cpp_source.html#l00019">OBDParser::load()</a> и <a class="el" href="main_8cpp_source.html#l00020">obdThreadFunc()</a>.</p>
+
+</div>
+</div>
+<a id="a1d7de0bbcc21498900c1ee7333e5f8cc" name="a1d7de0bbcc21498900c1ee7333e5f8cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d7de0bbcc21498900c1ee7333e5f8cc">&#9670;&#160;</a></span>throttle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double OBDRecord::throttle</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00009">9</a></p>
+
+<p class="reference">Используется в <a class="el" href="dashboard_8cpp_source.html#l00048">Dashboard::draw()</a>, <a class="el" href="obd__parser_8cpp_source.html#l00019">OBDParser::load()</a> и <a class="el" href="main_8cpp_source.html#l00020">obdThreadFunc()</a>.</p>
+
+</div>
+</div>
+<a id="a71d08a0dbdfcad0eb2559a322ff176b7" name="a71d08a0dbdfcad0eb2559a322ff176b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71d08a0dbdfcad0eb2559a322ff176b7">&#9670;&#160;</a></span>time</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double OBDRecord::time</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00006">6</a></p>
+
+<p class="reference">Используется в <a class="el" href="obd__parser_8cpp_source.html#l00019">OBDParser::load()</a>, <a class="el" href="main_8cpp_source.html#l00051">main()</a> и <a class="el" href="main_8cpp_source.html#l00020">obdThreadFunc()</a>.</p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li>src/<a class="el" href="obd__parser_8h_source.html">obd_parser.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="struct_o_b_d_record.html">OBDRecord</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -5,15 +5,18 @@ project(RealCarADASMonitor)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# --- 1. OpenCV ---
+# --- 1. Внешние зависимости ---
+# OpenCV
 set(OpenCV_DIR "C:/opencv/build") 
 find_package(OpenCV REQUIRED)
 
-# --- 2. ONNX Runtime ---
+# Threads (Многопоточность для Шага 7.1)
+find_package(Threads REQUIRED)
+
+# ONNX Runtime
 set(ONNXRUNTIME_ROOT "C:/onnxruntime") 
 
-# --- 3. Исходные коды проекта ---
-# Добавляем новые файлы DMS сюда
+# --- 2. Исходные коды проекта ---
 set(MAIN_SOURCES 
     "src/main.cpp"
     "src/obd_parser.cpp"
@@ -28,9 +31,10 @@ set(MAIN_HEADERS
     "src/dashboard.h"
     "src/dms_monitor.h"
     "src/dms_hud.h"
+    "src/shared_state.h" # Не забудь добавить этот файл в папку src!
 )
 
-# --- 4. Основное приложение ---
+# --- 3. Основное приложение ---
 add_executable(RealCarMonitor ${MAIN_SOURCES} ${MAIN_HEADERS})
 
 target_include_directories(RealCarMonitor PRIVATE 
@@ -45,22 +49,22 @@ target_link_libraries(RealCarMonitor
     PRIVATE 
     ${OpenCV_LIBS} 
     onnxruntime
+    Threads::Threads # Линкуем потоки
 )
 
-# --- 5. ТЕСТОВЫЙ ЗАПУСК DMS (Задание 6.5) ---
-# Отдельный exe для проверки камеры без логов телеметрии
+# --- 4. ТЕСТОВЫЙ ЗАПУСК DMS ---
 add_executable(DMSTest "src/main_dms.cpp" "src/dms_monitor.cpp" "src/dms_hud.cpp")
-target_link_libraries(DMSTest PRIVATE ${OpenCV_LIBS})
+target_link_libraries(DMSTest PRIVATE ${OpenCV_LIBS} Threads::Threads)
 target_include_directories(DMSTest PRIVATE "src")
 
-# --- 6. Копирование DLL после сборки ---
+# --- 5. Копирование DLL после сборки ---
 add_custom_command(TARGET RealCarMonitor POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     "${ONNXRUNTIME_ROOT}/lib/onnxruntime.dll"
     $<TARGET_FILE_DIR:RealCarMonitor>
 )
 
-# --- 7. Google Test ---
+# --- 6. Google Test (Задание 7.6) ---
 include(FetchContent)
 set(CMAKE_TLS_VERIFY OFF)
 FetchContent_Declare(
@@ -70,7 +74,12 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Тестовое приложение
-add_executable(RunTests tests/test_obd_parser.cpp src/obd_parser.cpp)
-target_link_libraries(RunTests GTest::gtest_main)
+# Обновленное тестовое приложение (теперь включает тесты DMS)
+add_executable(RunTests 
+    tests/test_obd_parser.cpp 
+    tests/test_dms.cpp       # Создай этот файл для тестов DMS
+    src/obd_parser.cpp 
+    src/dms_monitor.cpp
+)
+target_link_libraries(RunTests GTest::gtest_main ${OpenCV_LIBS})
 target_include_directories(RunTests PRIVATE "src")

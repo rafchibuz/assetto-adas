@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ADAS Integrated System: Исходный файл src/onnx_classifier.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">ADAS Integrated System<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('onnx__classifier_8cpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">onnx_classifier.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="onnx__classifier_8cpp.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="onnx__classifier_8h.html">onnx_classifier.h</a>&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;numeric&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="}">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_o_n_n_x_classifier.html#a795a5c632b4460de8478942ddd09bd2f">    9</a></span><a class="code hl_function" href="class_o_n_n_x_classifier.html#a795a5c632b4460de8478942ddd09bd2f">ONNXClassifier::ONNXClassifier</a>(<span class="keyword">const</span> std::string&amp; model_path, <span class="keyword">const</span> std::string&amp; config_path) {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <a class="code hl_function" href="class_o_n_n_x_classifier.html#ae21ef4a26b54d352643f8d2c0c022d2d">loadNormalizationParams</a>(config_path);</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    Ort::SessionOptions session_options;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    session_options.SetIntraOpNumThreads(1);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    session_options.SetGraphOptimizationLevel(GraphOptimizationLevel::ORT_ENABLE_EXTENDED);</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifdef _WIN32</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    std::wstring w_model_path(model_path.begin(), model_path.end());</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_variable" href="class_o_n_n_x_classifier.html#ada589000ee11619235c41f6e77052f2d">session</a> = std::make_unique&lt;Ort::Session&gt;(<a class="code hl_variable" href="class_o_n_n_x_classifier.html#ad1eaf00fb496610d1b46811092d849de">env</a>, w_model_path.c_str(), session_options);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_variable" href="class_o_n_n_x_classifier.html#ada589000ee11619235c41f6e77052f2d">session</a> = std::make_unique&lt;Ort::Session&gt;(<a class="code hl_variable" href="class_o_n_n_x_classifier.html#ad1eaf00fb496610d1b46811092d849de">env</a>, model_path.c_str(), session_options);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
+</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">// Ручной парсинг JSON (Шаг 4.4)</span></div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="}">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_o_n_n_x_classifier.html#ae21ef4a26b54d352643f8d2c0c022d2d">   25</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_o_n_n_x_classifier.html#ae21ef4a26b54d352643f8d2c0c022d2d">ONNXClassifier::loadNormalizationParams</a>(<span class="keyword">const</span> std::string&amp; config_path) {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    std::ifstream f(config_path);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordflow">if</span> (!f.is_open()) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Cannot open config JSON&quot;</span>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    std::stringstream buffer;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    buffer &lt;&lt; f.rdbuf();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    std::string content = buffer.str();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">auto</span> parseArray = [&amp;](<span class="keyword">const</span> std::string&amp; key) {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        std::vector&lt;float&gt; vec;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">size_t</span> pos = content.find(key);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        pos = content.find(<span class="stringliteral">&quot;[&quot;</span>, pos);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordtype">size_t</span> end = content.find(<span class="stringliteral">&quot;]&quot;</span>, pos);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        std::string arrayStr = content.substr(pos + 1, end - pos - 1);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        std::stringstream ss(arrayStr);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        std::string item;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">while</span> (std::getline(ss, item, <span class="charliteral">&#39;,&#39;</span>)) vec.push_back(std::stof(item));</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> vec;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    };</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_variable" href="class_o_n_n_x_classifier.html#a2ccde6b3abb7077478ff6da86d3d75b0">means</a> = parseArray(<span class="stringliteral">&quot;\&quot;mean\&quot;&quot;</span>);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_variable" href="class_o_n_n_x_classifier.html#a26e26114b083a3f216767b3487ac56d5">stds</a> = parseArray(<span class="stringliteral">&quot;\&quot;std\&quot;&quot;</span>);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
+</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_o_n_n_x_classifier.html#af0ca0ad4316a816245c1ad27c0717e29">   49</a></span>std::vector&lt;float&gt; <a class="code hl_function" href="class_o_n_n_x_classifier.html#af0ca0ad4316a816245c1ad27c0717e29">ONNXClassifier::softmax</a>(<span class="keyword">const</span> std::vector&lt;float&gt;&amp; logits) {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::vector&lt;float&gt; exp_logits(logits.size());</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">float</span> max_logit = *std::max_element(logits.begin(), logits.end());</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">float</span> sum = 0.0f;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; logits.size(); ++i) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        exp_logits[i] = std::exp(logits[i] - max_logit);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        sum += exp_logits[i];</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">for</span> (<span class="keywordtype">float</span>&amp; val : exp_logits) val /= sum;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">return</span> exp_logits;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="class_o_n_n_x_classifier.html#a27d9400d276f0b2b03f4d08736f121a7">   61</a></span><a class="code hl_struct" href="struct_classification_result.html">ClassificationResult</a> <a class="code hl_function" href="class_o_n_n_x_classifier.html#a27d9400d276f0b2b03f4d08736f121a7">ONNXClassifier::classify</a>(<span class="keyword">const</span> std::vector&lt;float&gt;&amp; features) {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// 1. Нормализация (Z-score)</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    std::vector&lt;float&gt; input_tensor_values(features.size());</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; features.size(); ++i) {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        input_tensor_values[i] = (features[i] - <a class="code hl_variable" href="class_o_n_n_x_classifier.html#a2ccde6b3abb7077478ff6da86d3d75b0">means</a>[i]) / <a class="code hl_variable" href="class_o_n_n_x_classifier.html#a26e26114b083a3f216767b3487ac56d5">stds</a>[i];</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// 2. Создание тензора</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">auto</span> memory_info = Ort::MemoryInfo::CreateCpu(OrtArenaAllocator, OrtMemTypeDefault);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    int64_t input_shape[] = {1, 6};</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    Ort::Value input_tensor = Ort::Value::CreateTensor&lt;float&gt;(</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        memory_info, input_tensor_values.data(), input_tensor_values.size(), input_shape, 2);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// 3. Запуск сессии</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">auto</span> output_tensors = <a class="code hl_variable" href="class_o_n_n_x_classifier.html#ada589000ee11619235c41f6e77052f2d">session</a>-&gt;Run(Ort::RunOptions{<span class="keyword">nullptr</span>}, </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                                       <a class="code hl_variable" href="class_o_n_n_x_classifier.html#ad64ad42c39280c4cf8fa3f19f4d920cb">input_names</a>.data(), &amp;input_tensor, 1, </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                                       <a class="code hl_variable" href="class_o_n_n_x_classifier.html#a1f3915f244c5e801ff2c41e06301a306">output_names</a>.data(), 1);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">float</span>* output_data = output_tensors.front().GetTensorMutableData&lt;<span class="keywordtype">float</span>&gt;();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    std::vector&lt;float&gt; logits(output_data, output_data + 3);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// 4. Softmax и результат</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    std::vector&lt;float&gt; probs = <a class="code hl_function" href="class_o_n_n_x_classifier.html#af0ca0ad4316a816245c1ad27c0717e29">softmax</a>(logits);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">int</span> max_idx = std::distance(probs.begin(), std::max_element(probs.begin(), probs.end()));</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordflow">return</span> {max_idx, probs[max_idx], probs};</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>}</div>
+</div>
+<div class="ttc" id="aclass_o_n_n_x_classifier_html_a1f3915f244c5e801ff2c41e06301a306"><div class="ttname"><a href="class_o_n_n_x_classifier.html#a1f3915f244c5e801ff2c41e06301a306">ONNXClassifier::output_names</a></div><div class="ttdeci">std::vector&lt; const char * &gt; output_names</div><div class="ttdef"><b>Определения</b> <a href="onnx__classifier_8h_source.html#l00031">onnx_classifier.h:31</a></div></div>
+<div class="ttc" id="aclass_o_n_n_x_classifier_html_a26e26114b083a3f216767b3487ac56d5"><div class="ttname"><a href="class_o_n_n_x_classifier.html#a26e26114b083a3f216767b3487ac56d5">ONNXClassifier::stds</a></div><div class="ttdeci">std::vector&lt; float &gt; stds</div><div class="ttdef"><b>Определения</b> <a href="onnx__classifier_8h_source.html#l00027">onnx_classifier.h:27</a></div></div>
+<div class="ttc" id="aclass_o_n_n_x_classifier_html_a27d9400d276f0b2b03f4d08736f121a7"><div class="ttname"><a href="class_o_n_n_x_classifier.html#a27d9400d276f0b2b03f4d08736f121a7">ONNXClassifier::classify</a></div><div class="ttdeci">ClassificationResult classify(const std::vector&lt; float &gt; &amp;features)</div><div class="ttdef"><b>Определения</b> <a href="#l00061">onnx_classifier.cpp:61</a></div></div>
+<div class="ttc" id="aclass_o_n_n_x_classifier_html_a2ccde6b3abb7077478ff6da86d3d75b0"><div class="ttname"><a href="class_o_n_n_x_classifier.html#a2ccde6b3abb7077478ff6da86d3d75b0">ONNXClassifier::means</a></div><div class="ttdeci">std::vector&lt; float &gt; means</div><div class="ttdef"><b>Определения</b> <a href="onnx__classifier_8h_source.html#l00026">onnx_classifier.h:26</a></div></div>
+<div class="ttc" id="aclass_o_n_n_x_classifier_html_a795a5c632b4460de8478942ddd09bd2f"><div class="ttname"><a href="class_o_n_n_x_classifier.html#a795a5c632b4460de8478942ddd09bd2f">ONNXClassifier::ONNXClassifier</a></div><div class="ttdeci">ONNXClassifier(const std::string &amp;model_path, const std::string &amp;config_path)</div><div class="ttdef"><b>Определения</b> <a href="#l00009">onnx_classifier.cpp:9</a></div></div>
+<div class="ttc" id="aclass_o_n_n_x_classifier_html_ad1eaf00fb496610d1b46811092d849de"><div class="ttname"><a href="class_o_n_n_x_classifier.html#ad1eaf00fb496610d1b46811092d849de">ONNXClassifier::env</a></div><div class="ttdeci">Ort::Env env</div><div class="ttdef"><b>Определения</b> <a href="onnx__classifier_8h_source.html#l00022">onnx_classifier.h:22</a></div></div>
+<div class="ttc" id="aclass_o_n_n_x_classifier_html_ad64ad42c39280c4cf8fa3f19f4d920cb"><div class="ttname"><a href="class_o_n_n_x_classifier.html#ad64ad42c39280c4cf8fa3f19f4d920cb">ONNXClassifier::input_names</a></div><div class="ttdeci">std::vector&lt; const char * &gt; input_names</div><div class="ttdef"><b>Определения</b> <a href="onnx__classifier_8h_source.html#l00030">onnx_classifier.h:30</a></div></div>
+<div class="ttc" id="aclass_o_n_n_x_classifier_html_ada589000ee11619235c41f6e77052f2d"><div class="ttname"><a href="class_o_n_n_x_classifier.html#ada589000ee11619235c41f6e77052f2d">ONNXClassifier::session</a></div><div class="ttdeci">std::unique_ptr&lt; Ort::Session &gt; session</div><div class="ttdef"><b>Определения</b> <a href="onnx__classifier_8h_source.html#l00023">onnx_classifier.h:23</a></div></div>
+<div class="ttc" id="aclass_o_n_n_x_classifier_html_ae21ef4a26b54d352643f8d2c0c022d2d"><div class="ttname"><a href="class_o_n_n_x_classifier.html#ae21ef4a26b54d352643f8d2c0c022d2d">ONNXClassifier::loadNormalizationParams</a></div><div class="ttdeci">void loadNormalizationParams(const std::string &amp;config_path)</div><div class="ttdef"><b>Определения</b> <a href="#l00025">onnx_classifier.cpp:25</a></div></div>
+<div class="ttc" id="aclass_o_n_n_x_classifier_html_af0ca0ad4316a816245c1ad27c0717e29"><div class="ttname"><a href="class_o_n_n_x_classifier.html#af0ca0ad4316a816245c1ad27c0717e29">ONNXClassifier::softmax</a></div><div class="ttdeci">std::vector&lt; float &gt; softmax(const std::vector&lt; float &gt; &amp;logits)</div><div class="ttdef"><b>Определения</b> <a href="#l00049">onnx_classifier.cpp:49</a></div></div>
+<div class="ttc" id="aonnx__classifier_8h_html"><div class="ttname"><a href="onnx__classifier_8h.html">onnx_classifier.h</a></div></div>
+<div class="ttc" id="astruct_classification_result_html"><div class="ttname"><a href="struct_classification_result.html">ClassificationResult</a></div><div class="ttdef"><b>Определения</b> <a href="onnx__classifier_8h_source.html#l00006">onnx_classifier.h:6</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="onnx__classifier_8cpp.html">onnx_classifier.cpp</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

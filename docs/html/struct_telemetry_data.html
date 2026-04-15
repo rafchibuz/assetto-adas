@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ADAS Integrated System: Структура TelemetryData</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">ADAS Integrated System<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('struct_telemetry_data.html','','struct_telemetry_data-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Структура TelemetryData</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Данные об автомобиле в конкретный момент времени.  
+ <a href="#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="obd__parser_8h_source.html">obd_parser.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:a67ea02e38730f2c445838cb6963b825b" id="r_a67ea02e38730f2c445838cb6963b825b"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a67ea02e38730f2c445838cb6963b825b">speed</a></td></tr>
+<tr class="memdesc:a67ea02e38730f2c445838cb6963b825b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Скорость в км/ч  <br /></td></tr>
+<tr class="memitem:a7e08b2818295c0d005c12953a341c684" id="r_a7e08b2818295c0d005c12953a341c684"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a7e08b2818295c0d005c12953a341c684">rpm</a></td></tr>
+<tr class="memdesc:a7e08b2818295c0d005c12953a341c684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обороты двигателя  <br /></td></tr>
+<tr class="memitem:aecf2508316ccc37409885691eb3a9865" id="r_aecf2508316ccc37409885691eb3a9865"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#aecf2508316ccc37409885691eb3a9865">g_force_lat</a></td></tr>
+<tr class="memdesc:aecf2508316ccc37409885691eb3a9865"><td class="mdescLeft">&#160;</td><td class="mdescRight">Поперечная перегрузка (G).  <br /></td></tr>
+<tr class="memitem:a198ad03565babf431fa96475f4f748f6" id="r_a198ad03565babf431fa96475f4f748f6"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a198ad03565babf431fa96475f4f748f6">g_force_lon</a></td></tr>
+<tr class="memdesc:a198ad03565babf431fa96475f4f748f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Продольная перегрузка (G).  <br /></td></tr>
+<tr class="memitem:a937505fe5bd5c20ad86e7907861348d4" id="r_a937505fe5bd5c20ad86e7907861348d4"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a937505fe5bd5c20ad86e7907861348d4">throttle</a></td></tr>
+<tr class="memdesc:a937505fe5bd5c20ad86e7907861348d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Положение педали газа (0-100%).  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Данные об автомобиле в конкретный момент времени. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00014">14</a></p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Данные класса</h2>
+<a id="aecf2508316ccc37409885691eb3a9865" name="aecf2508316ccc37409885691eb3a9865"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecf2508316ccc37409885691eb3a9865">&#9670;&#160;</a></span>g_force_lat</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TelemetryData::g_force_lat</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Поперечная перегрузка (G). </p>
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00017">17</a></p>
+
+</div>
+</div>
+<a id="a198ad03565babf431fa96475f4f748f6" name="a198ad03565babf431fa96475f4f748f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a198ad03565babf431fa96475f4f748f6">&#9670;&#160;</a></span>g_force_lon</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TelemetryData::g_force_lon</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Продольная перегрузка (G). </p>
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00018">18</a></p>
+
+</div>
+</div>
+<a id="a7e08b2818295c0d005c12953a341c684" name="a7e08b2818295c0d005c12953a341c684"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e08b2818295c0d005c12953a341c684">&#9670;&#160;</a></span>rpm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TelemetryData::rpm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обороты двигателя </p>
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00016">16</a></p>
+
+</div>
+</div>
+<a id="a67ea02e38730f2c445838cb6963b825b" name="a67ea02e38730f2c445838cb6963b825b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67ea02e38730f2c445838cb6963b825b">&#9670;&#160;</a></span>speed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TelemetryData::speed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Скорость в км/ч </p>
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00015">15</a></p>
+
+</div>
+</div>
+<a id="a937505fe5bd5c20ad86e7907861348d4" name="a937505fe5bd5c20ad86e7907861348d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a937505fe5bd5c20ad86e7907861348d4">&#9670;&#160;</a></span>throttle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TelemetryData::throttle</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Положение педали газа (0-100%). </p>
+
+<p class="definition">См. определение в файле <a class="el" href="obd__parser_8h_source.html">obd_parser.h</a> строка <a class="el" href="obd__parser_8h_source.html#l00019">19</a></p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li>src/<a class="el" href="obd__parser_8h_source.html">obd_parser.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="struct_telemetry_data.html">TelemetryData</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

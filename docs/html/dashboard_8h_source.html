@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ADAS Integrated System: Исходный файл src/dashboard.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">ADAS Integrated System<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('dashboard_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">dashboard.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="dashboard_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;opencv2/opencv.hpp&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="obd__parser_8h.html">obd_parser.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="foldopen" id="foldopen00007" data-start="{" data-end="};">
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="class_dashboard.html">    7</a></span><span class="keyword">class </span><a class="code hl_function" href="class_dashboard.html#aa0173a97f26dceca0f3f4fdea93f018a">Dashboard</a> {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="comment">// Конструктор задает размер окна (по умолчанию 640x480)</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <a class="code hl_function" href="class_dashboard.html#aa0173a97f26dceca0f3f4fdea93f018a">Dashboard</a>(<span class="keywordtype">int</span> width = 640, <span class="keywordtype">int</span> height = 480);</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="comment">// Основной метод отрисовки</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_dashboard.html#a839a6d204478d4b799d6f21c61deccb2">draw</a>(cv::Mat&amp; frame, <span class="keyword">const</span> OBDRecord&amp; data, <span class="keywordtype">int</span> predicted_style, <span class="keywordtype">float</span> confidence);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_dashboard.html#a08c5181de8dd235540696e2fdcd88dc1">   16</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_dashboard.html#ac5a17727d09655d0139c2006ee0283ce">w</a>, <a class="code hl_variable" href="class_dashboard.html#a08c5181de8dd235540696e2fdcd88dc1">h</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="comment">// Круговой прибор со стрелкой (Спидометр / Тахометр)</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_dashboard.html#a85a63de1a862b54e0162c4ff7876649b">drawGauge</a>(cv::Mat&amp; img, cv::Point center, <span class="keywordtype">int</span> radius, <span class="keywordtype">float</span> value, <span class="keywordtype">float</span> min_val, <span class="keywordtype">float</span> max_val, </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>                    <span class="keyword">const</span> std::string&amp; label, cv::Scalar color);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// Линейный прибор (Топливо / Дроссель)</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_dashboard.html#a4069f2b5a6b0e24d18cde4eaeb0d5699">drawLinearGauge</a>(cv::Mat&amp; img, cv::Rect rect, <span class="keywordtype">float</span> value, <span class="keywordtype">float</span> min_val, <span class="keywordtype">float</span> max_val, </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>                          <span class="keyword">const</span> std::string&amp; label, cv::Scalar color, <span class="keywordtype">bool</span> is_fuel);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="comment">// G-G Diagram (G-Bowl)</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_dashboard.html#a52bed6b898ffde123fe3e1e5e0f61cb7">drawGBowl</a>(cv::Mat&amp; img, cv::Point center, <span class="keywordtype">int</span> radius, <span class="keywordtype">float</span> lat_g, <span class="keywordtype">float</span> lon_g);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
+</div>
+<div class="ttc" id="aclass_dashboard_html_a08c5181de8dd235540696e2fdcd88dc1"><div class="ttname"><a href="class_dashboard.html#a08c5181de8dd235540696e2fdcd88dc1">Dashboard::h</a></div><div class="ttdeci">int h</div><div class="ttdef"><b>Определения</b> <a href="#l00016">dashboard.h:16</a></div></div>
+<div class="ttc" id="aclass_dashboard_html_a4069f2b5a6b0e24d18cde4eaeb0d5699"><div class="ttname"><a href="class_dashboard.html#a4069f2b5a6b0e24d18cde4eaeb0d5699">Dashboard::drawLinearGauge</a></div><div class="ttdeci">void drawLinearGauge(cv::Mat &amp;img, cv::Rect rect, float value, float min_val, float max_val, const std::string &amp;label, cv::Scalar color, bool is_fuel)</div><div class="ttdef"><b>Определения</b> <a href="dashboard_8cpp_source.html#l00026">dashboard.cpp:26</a></div></div>
+<div class="ttc" id="aclass_dashboard_html_a52bed6b898ffde123fe3e1e5e0f61cb7"><div class="ttname"><a href="class_dashboard.html#a52bed6b898ffde123fe3e1e5e0f61cb7">Dashboard::drawGBowl</a></div><div class="ttdeci">void drawGBowl(cv::Mat &amp;img, cv::Point center, int radius, float lat_g, float lon_g)</div><div class="ttdef"><b>Определения</b> <a href="dashboard_8cpp_source.html#l00036">dashboard.cpp:36</a></div></div>
+<div class="ttc" id="aclass_dashboard_html_a839a6d204478d4b799d6f21c61deccb2"><div class="ttname"><a href="class_dashboard.html#a839a6d204478d4b799d6f21c61deccb2">Dashboard::draw</a></div><div class="ttdeci">void draw(cv::Mat &amp;frame, const OBDRecord &amp;data, int predicted_style, float confidence)</div><div class="ttdef"><b>Определения</b> <a href="dashboard_8cpp_source.html#l00048">dashboard.cpp:48</a></div></div>
+<div class="ttc" id="aclass_dashboard_html_a85a63de1a862b54e0162c4ff7876649b"><div class="ttname"><a href="class_dashboard.html#a85a63de1a862b54e0162c4ff7876649b">Dashboard::drawGauge</a></div><div class="ttdeci">void drawGauge(cv::Mat &amp;img, cv::Point center, int radius, float value, float min_val, float max_val, const std::string &amp;label, cv::Scalar color)</div><div class="ttdef"><b>Определения</b> <a href="dashboard_8cpp_source.html#l00006">dashboard.cpp:6</a></div></div>
+<div class="ttc" id="aclass_dashboard_html_aa0173a97f26dceca0f3f4fdea93f018a"><div class="ttname"><a href="class_dashboard.html#aa0173a97f26dceca0f3f4fdea93f018a">Dashboard::Dashboard</a></div><div class="ttdeci">Dashboard(int width=640, int height=480)</div><div class="ttdef"><b>Определения</b> <a href="dashboard_8cpp_source.html#l00004">dashboard.cpp:4</a></div></div>
+<div class="ttc" id="aclass_dashboard_html_ac5a17727d09655d0139c2006ee0283ce"><div class="ttname"><a href="class_dashboard.html#ac5a17727d09655d0139c2006ee0283ce">Dashboard::w</a></div><div class="ttdeci">int w</div><div class="ttdef"><b>Определения</b> <a href="#l00016">dashboard.h:16</a></div></div>
+<div class="ttc" id="aobd__parser_8h_html"><div class="ttname"><a href="obd__parser_8h.html">obd_parser.h</a></div><div class="ttdoc">Парсер данных телеметрии из CSV файла.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="dashboard_8h.html">dashboard.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

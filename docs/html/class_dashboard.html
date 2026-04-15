@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ADAS Integrated System: Класс Dashboard</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">ADAS Integrated System<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('class_dashboard.html','','class_dashboard-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Класс Dashboard</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="dashboard_8h_source.html">dashboard.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:aa0173a97f26dceca0f3f4fdea93f018a" id="r_aa0173a97f26dceca0f3f4fdea93f018a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa0173a97f26dceca0f3f4fdea93f018a">Dashboard</a> (int width=640, int height=480)</td></tr>
+<tr class="memitem:a839a6d204478d4b799d6f21c61deccb2" id="r_a839a6d204478d4b799d6f21c61deccb2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a839a6d204478d4b799d6f21c61deccb2">draw</a> (cv::Mat &amp;frame, const OBDRecord &amp;data, int predicted_style, float confidence)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Закрытые члены</h2></td></tr>
+<tr class="memitem:a85a63de1a862b54e0162c4ff7876649b" id="r_a85a63de1a862b54e0162c4ff7876649b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a85a63de1a862b54e0162c4ff7876649b">drawGauge</a> (cv::Mat &amp;img, cv::Point center, int radius, float value, float min_val, float max_val, const std::string &amp;label, cv::Scalar color)</td></tr>
+<tr class="memitem:a4069f2b5a6b0e24d18cde4eaeb0d5699" id="r_a4069f2b5a6b0e24d18cde4eaeb0d5699"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4069f2b5a6b0e24d18cde4eaeb0d5699">drawLinearGauge</a> (cv::Mat &amp;img, cv::Rect rect, float value, float min_val, float max_val, const std::string &amp;label, cv::Scalar color, bool is_fuel)</td></tr>
+<tr class="memitem:a52bed6b898ffde123fe3e1e5e0f61cb7" id="r_a52bed6b898ffde123fe3e1e5e0f61cb7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a52bed6b898ffde123fe3e1e5e0f61cb7">drawGBowl</a> (cv::Mat &amp;img, cv::Point center, int radius, float lat_g, float lon_g)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Закрытые данные</h2></td></tr>
+<tr class="memitem:ac5a17727d09655d0139c2006ee0283ce" id="r_ac5a17727d09655d0139c2006ee0283ce"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ac5a17727d09655d0139c2006ee0283ce">w</a></td></tr>
+<tr class="memitem:a08c5181de8dd235540696e2fdcd88dc1" id="r_a08c5181de8dd235540696e2fdcd88dc1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a08c5181de8dd235540696e2fdcd88dc1">h</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="dashboard_8h_source.html">dashboard.h</a> строка <a class="el" href="dashboard_8h_source.html#l00007">7</a></p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Конструктор(ы)</h2>
+<a id="aa0173a97f26dceca0f3f4fdea93f018a" name="aa0173a97f26dceca0f3f4fdea93f018a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0173a97f26dceca0f3f4fdea93f018a">&#9670;&#160;</a></span>Dashboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dashboard::Dashboard </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>width</em></span><span class="paramdefsep"> = </span><span class="paramdefval">640</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span><span class="paramdefsep"> = </span><span class="paramdefval">480</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="dashboard_8cpp_source.html">dashboard.cpp</a> строка <a class="el" href="dashboard_8cpp_source.html#l00004">4</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="dashboard_8h_source.html#l00016">h</a> и <a class="el" href="dashboard_8h_source.html#l00016">w</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Методы</h2>
+<a id="a839a6d204478d4b799d6f21c61deccb2" name="a839a6d204478d4b799d6f21c61deccb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a839a6d204478d4b799d6f21c61deccb2">&#9670;&#160;</a></span>draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dashboard::draw </td>
+          <td>(</td>
+          <td class="paramtype">cv::Mat &amp;</td>          <td class="paramname"><span class="paramname"><em>frame</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const OBDRecord &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>predicted_style</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>confidence</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="dashboard_8cpp_source.html">dashboard.cpp</a> строка <a class="el" href="dashboard_8cpp_source.html#l00048">48</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="dashboard_8cpp_source.html#l00006">drawGauge()</a>, <a class="el" href="dashboard_8cpp_source.html#l00036">drawGBowl()</a>, <a class="el" href="dashboard_8cpp_source.html#l00026">drawLinearGauge()</a> и <a class="el" href="dashboard_8h_source.html#l00016">h</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00051">main()</a>.</p>
+
+</div>
+</div>
+<a id="a85a63de1a862b54e0162c4ff7876649b" name="a85a63de1a862b54e0162c4ff7876649b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85a63de1a862b54e0162c4ff7876649b">&#9670;&#160;</a></span>drawGauge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dashboard::drawGauge </td>
+          <td>(</td>
+          <td class="paramtype">cv::Mat &amp;</td>          <td class="paramname"><span class="paramname"><em>img</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cv::Point</td>          <td class="paramname"><span class="paramname"><em>center</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>radius</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>min_val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>max_val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>label</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cv::Scalar</td>          <td class="paramname"><span class="paramname"><em>color</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="dashboard_8cpp_source.html">dashboard.cpp</a> строка <a class="el" href="dashboard_8cpp_source.html#l00006">6</a></p>
+
+<p class="reference">Используется в <a class="el" href="dashboard_8cpp_source.html#l00048">draw()</a>.</p>
+
+</div>
+</div>
+<a id="a52bed6b898ffde123fe3e1e5e0f61cb7" name="a52bed6b898ffde123fe3e1e5e0f61cb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52bed6b898ffde123fe3e1e5e0f61cb7">&#9670;&#160;</a></span>drawGBowl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dashboard::drawGBowl </td>
+          <td>(</td>
+          <td class="paramtype">cv::Mat &amp;</td>          <td class="paramname"><span class="paramname"><em>img</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cv::Point</td>          <td class="paramname"><span class="paramname"><em>center</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>radius</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>lat_g</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>lon_g</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="dashboard_8cpp_source.html">dashboard.cpp</a> строка <a class="el" href="dashboard_8cpp_source.html#l00036">36</a></p>
+
+<p class="reference">Используется в <a class="el" href="dashboard_8cpp_source.html#l00048">draw()</a>.</p>
+
+</div>
+</div>
+<a id="a4069f2b5a6b0e24d18cde4eaeb0d5699" name="a4069f2b5a6b0e24d18cde4eaeb0d5699"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4069f2b5a6b0e24d18cde4eaeb0d5699">&#9670;&#160;</a></span>drawLinearGauge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dashboard::drawLinearGauge </td>
+          <td>(</td>
+          <td class="paramtype">cv::Mat &amp;</td>          <td class="paramname"><span class="paramname"><em>img</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cv::Rect</td>          <td class="paramname"><span class="paramname"><em>rect</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>min_val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>max_val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>label</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cv::Scalar</td>          <td class="paramname"><span class="paramname"><em>color</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_fuel</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="dashboard_8cpp_source.html">dashboard.cpp</a> строка <a class="el" href="dashboard_8cpp_source.html#l00026">26</a></p>
+
+<p class="reference">Используется в <a class="el" href="dashboard_8cpp_source.html#l00048">draw()</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Данные класса</h2>
+<a id="a08c5181de8dd235540696e2fdcd88dc1" name="a08c5181de8dd235540696e2fdcd88dc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08c5181de8dd235540696e2fdcd88dc1">&#9670;&#160;</a></span>h</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Dashboard::h</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="dashboard_8h_source.html">dashboard.h</a> строка <a class="el" href="dashboard_8h_source.html#l00016">16</a></p>
+
+<p class="reference">Используется в <a class="el" href="dashboard_8cpp_source.html#l00004">Dashboard()</a> и <a class="el" href="dashboard_8cpp_source.html#l00048">draw()</a>.</p>
+
+</div>
+</div>
+<a id="ac5a17727d09655d0139c2006ee0283ce" name="ac5a17727d09655d0139c2006ee0283ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5a17727d09655d0139c2006ee0283ce">&#9670;&#160;</a></span>w</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Dashboard::w</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="dashboard_8h_source.html">dashboard.h</a> строка <a class="el" href="dashboard_8h_source.html#l00016">16</a></p>
+
+<p class="reference">Используется в <a class="el" href="dashboard_8cpp_source.html#l00004">Dashboard()</a>.</p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>src/<a class="el" href="dashboard_8h_source.html">dashboard.h</a></li>
+<li>src/<a class="el" href="dashboard_8cpp_source.html">dashboard.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="class_dashboard.html">Dashboard</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>
