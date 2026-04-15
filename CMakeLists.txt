@@ -4,29 +4,30 @@ project(RealCarADASMonitor)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# 1. Поиск OpenCV 
-# Убедись, что переменная окружения OpenCV_DIR указывает на C:/opencv/build
-set(OpenCV_DIR "C:/opencv/build/x64/vc16/lib")
+# 1. OpenCV
+set(OpenCV_DIR "C:/opencv/build/x64/vc16/lib") # Твой путь
 find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
 
-# 2. Настройка ONNX Runtime
+# 2. ONNX Runtime
 set(ONNXRUNTIME_ROOT "C:/onnxruntime")
 include_directories(${ONNXRUNTIME_ROOT}/include)
-
-# Для MSVC линкуем .lib файлы
 link_directories(${ONNXRUNTIME_ROOT}/lib)
 
-# 3. Исходники
-file(GLOB_RECURSE SOURCES "src/*.cpp")
-file(GLOB_RECURSE HEADERS "src/*.h")
+# 3. ЯВНО указываем исходники для основного приложения
+set(MAIN_SOURCES 
+    "src/main.cpp"
+    "src/obd_parser.cpp"
+)
+set(MAIN_HEADERS
+    "src/obd_parser.h"
+)
 
-# 4. Исполняемый файл
-add_executable(RealCarMonitor ${SOURCES} ${HEADERS})
-# Добавляем onnxruntime.lib (имя может отличаться в зависимости от версии, проверь папку lib)
+# 4. Создание экзешника
+add_executable(RealCarMonitor ${MAIN_SOURCES} ${MAIN_HEADERS})
 target_link_libraries(RealCarMonitor ${OpenCV_LIBS} onnxruntime)
+target_include_directories(RealCarMonitor PRIVATE "src")
 
-# 5. Google Test (через FetchContent - отлично работает в VS)
+# 5. Google Test (оставляем как было, раз тесты работают)
 include(FetchContent)
 set(CMAKE_TLS_VERIFY OFF)
 FetchContent_Declare(
@@ -36,6 +37,6 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Тесты
 add_executable(RunTests tests/test_obd_parser.cpp src/obd_parser.cpp)
 target_link_libraries(RunTests GTest::gtest_main)
+

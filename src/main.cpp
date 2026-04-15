@@ -1,30 +1,42 @@
 #include <iostream>
-#include <opencv2/opencv.hpp>
+#include <iomanip>
+#include <filesystem> // Требует C++17
+#include "obd_parser.h"
 
-/**
- * @brief Точка входа в систему ADAS.
- * На этапе Шага 1.4 проверяет инициализацию проекта и версию OpenCV.
- */
+namespace fs = std::filesystem;
+
 int main() {
-    // Вывод приветствия согласно заданию 
-    std::cout << "========================================" << std::endl;
-    std::cout << "   Real-Car ADAS Monitor Initialized    " << std::endl;
-    std::cout << "========================================" << std::endl;
-
-    // Проверка версии OpenCV для отчета
-    std::cout << "C++ Standard: 17" << std::endl;
-    std::cout << "OpenCV Version: " << CV_VERSION << std::endl;
-
-    // Попытка создать пустую матрицу, чтобы убедиться, что линковка прошла успешно
-    cv::Mat test_matrix = cv::Mat::zeros(100, 100, CV_8UC3);
+    OBDParser parser;
     
-    if (!test_matrix.empty()) {
-        std::cout << "OpenCV Liking: SUCCESS" << std::endl;
-    } else {
-        std::cerr << "OpenCV Liking: FAILED" << std::endl;
+    // Проверяем наличие папки data, если нет — создаем
+    if (!fs::exists("data")) {
+        fs::create_directory("data");
+        std::cout << "[*] Created 'data' directory." << std::endl;
+    }
+
+    std::cout << "Starting Pipeline..." << std::endl;
+
+    // 1. Загрузка (Убедись, что исходный файл лежит в assetto-adas/data/telemetry.csv)
+    if (parser.load("data/telemetry.csv") == -1) {
+        std::cerr << "[-] Error: 'data/telemetry.csv' not found!" << std::endl;
         return -1;
     }
 
-    std::cout << "\nPress Any Key to Exit..." << std::endl;
+    // 2. Сохранение
+    std::string output = "data/processed_telemetry.csv";
+    if (parser.save(output)) {
+        std::cout << "[+] SUCCESS! File saved: " << fs::absolute(output) << std::endl;
+    }
+
+    // Статистика
+    int stats[3] = {0, 0, 0};
+    for (int i = 0; i < parser.getCount(); ++i) {
+        stats[parser.getRecord(i).driver_style]++;
+    }
+
+    std::cout << "====================================" << std::endl;
+    std::cout << "0 (SLOW): " << stats[0] << " | 1 (NORMAL): " << stats[1] << " | 2 (AGGRESSIVE): " << stats[2] << std::endl;
+    std::cout << "====================================" << std::endl;
+
     return 0;
 }
