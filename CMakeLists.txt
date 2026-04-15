@@ -19,6 +19,7 @@ set(MAIN_SOURCES
     "src/main.cpp"
     "src/obd_parser.cpp"
     "src/onnx_classifier.cpp"
+    "src/dashboard.cpp"
 )
 set(MAIN_HEADERS
     "src/obd_parser.h"

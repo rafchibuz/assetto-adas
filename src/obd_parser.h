@@ -9,19 +9,21 @@ struct OBDRecord {
     double throttle;
     double accel_lon;
     double accel_lat;
-    int driver_style; // 0: SLOW, 1: NORMAL, 2: AGGRESSIVE
+    double fuel;
+    int driver_style;
 };
 
 class OBDParser {
 public:
-    // Загрузка и разметка
     int load(const std::string& filename);
-    // Сохранение размеченного датасета
-    bool save(const std::string& filename); 
+    bool save(const std::string& filename);
     
+    // Только объявление, без реализации
+    int getCount() const;
     OBDRecord getRecord(int index) const;
-    int getCount() const { return static_cast<int>(records.size()); }
-    static int stringToLabel(const std::string& label); 
+
+    // Добавляем объявление функции, на которую ругался компилятор
+    static int stringToLabel(const std::string& label);
 
 private:
     std::vector<OBDRecord> records;

@@ -1,105 +1,103 @@
 #include <iostream>
-#include <iomanip>
-#include <filesystem>
 #include <vector>
-#include <random> // Для честного рандома
-#include <ctime>
+#include <map>
+#include <iomanip>
+#include <opencv2/opencv.hpp>
+#include <filesystem>
 #include "obd_parser.h"
 #include "onnx_classifier.h"
+#include "dashboard.h"
 
 namespace fs = std::filesystem;
 
+// Функция для быстрого вывода статистики разметки в консоль
+void printGroundTruthStats(const OBDParser& parser) {
+    std::map<int, int> stats;
+    int total = parser.getCount();
+    for (int i = 0; i < total; ++i) {
+        stats[parser.getRecord(i).driver_style]++;
+    }
+
+    std::string names[] = {"SLOW", "NORMAL", "AGGRESSIVE"};
+    std::cout << "\n--- Parser Labeling Statistics (Ground Truth) ---" << std::endl;
+    for (int i = 0; i <= 2; ++i) {
+        double percent = (total > 0) ? (static_cast<double>(stats[i]) / total * 100.0) : 0;
+        std::cout << names[i] << ": " << stats[i] << " frames (" 
+                  << std::fixed << std::setprecision(1) << percent << "%)" << std::endl;
+    }
+    std::cout << "------------------------------------------------\n" << std::endl;
+}
+
 int main() {
     try {
+        // 1. Инициализация компонентов
         OBDParser parser;
+        Dashboard dash(640, 480);
         
-        // --- ЧАСТЬ 1: ПОДГОТОВКА И РАЗМЕТКА ДАННЫХ ---
-        if (!fs::exists("data")) {
-            fs::create_directory("data");
-            std::cout << "[*] Created 'data' directory." << std::endl;
-        }
+        std::string inputPath = "data/telemetry.csv";
+        std::string outputPath = "data/processed_telemetry.csv";
 
-        std::cout << ">>> Step 1: Processing Raw Telemetry..." << std::endl;
-        // Загружаем исходник (telemetry.csv должен быть в папке data)
-        if (parser.load("data/telemetry.csv") == -1) {
-            std::cerr << "[-] Error: 'data/telemetry.csv' not found!" << std::endl;
+        // Загружаем данные
+        if (parser.load(inputPath) == -1) {
+            std::cerr << "[-] Error: " << inputPath << " not found!" << std::endl;
             return -1;
         }
+        std::cout << "[+] Telemetry loaded: " << parser.getCount() << " records." << std::endl;
 
-        std::string output = "data/processed_telemetry.csv";
-        if (parser.save(output)) {
-            std::cout << "[+] Dataset labeled and saved to: " << fs::absolute(output) << std::endl;
+        // --- ВОТ ТУТ МЫ ВОЗВРАЩАЕМ СОХРАНЕНИЕ ---
+        printGroundTruthStats(parser);
+        if (parser.save(outputPath)) {
+            std::cout << "[+] Processed data for training saved to: " << outputPath << std::endl;
+        } else {
+            std::cerr << "[-] Warning: Could not save " << outputPath << " (Check if file is open in Excel!)" << std::endl;
         }
 
-        // --- ЧАСТЬ 2: ИНИЦИАЛИЗАЦИЯ НЕЙРОСЕТИ ---
-        std::cout << "\n>>> Step 2: Loading AI Model..." << std::endl;
-        // Убедись, что файлы лежат в папке models/
+        // Загружаем нейронку
+        // Убедись, что файлы .onnx и .json лежат в папке models/
         ONNXClassifier classifier("models/driver_classifier.onnx", "models/normalization_params.json");
-        std::cout << "[+] ONNX model loaded successfully." << std::endl;
+        std::cout << "[+] System initialized. Starting playback..." << std::endl;
 
-        // --- ЧАСТЬ 3: ВАЛИДАЦИЯ (Случайные 20 записей) ---
+        // 2. Основной цикл визуализации
         int total_records = parser.getCount();
-        int test_count = (total_records < 20) ? total_records : 20;
+        std::string win_name = "ADAS Real-Time Monitor";
+        cv::namedWindow(win_name, cv::WINDOW_AUTOSIZE);
 
-        std::cout << "\n>>> Step 3: Neural Network Validation (Random " << test_count << " Samples)" << std::endl;
-        std::cout << std::string(90, '-') << std::endl;
-        std::cout << std::left << std::setw(8) << "Index"
-                  << std::setw(10) << "Target" 
-                  << std::setw(10) << "Predict" 
-                  << std::setw(15) << "Confidence" 
-                  << "Raw Class Scores (Slow, Normal, Aggressive)" << std::endl;
-        std::cout << std::string(90, '-') << std::endl;
+        for (int i = 0; i < total_records; ++i) {
+            // Создаем черный фон (640x480)
+            cv::Mat frame = cv::Mat::zeros(480, 640, CV_8UC3);
 
-        // Настройка рандома
-        std::mt19937 gen(static_cast<unsigned int>(std::time(nullptr)));
-        std::uniform_int_distribution<> dis(0, total_records - 1);
+            // Получаем текущую запись
+            OBDRecord rec = parser.getRecord(i);
 
-        int correct = 0;
-        for (int i = 0; i < test_count; ++i) {
-            int random_idx = dis(gen);
-            OBDRecord rec = parser.getRecord(random_idx);
-            
-            // ВАЖНО: Порядок признаков должен СТРОГО совпадать с тем, что был в Google Colab
+            // 3. Инференс нейросети (предсказание модели в реальном времени)
             std::vector<float> features = {
-                (float)rec.time, 
-                (float)rec.speed, 
-                (float)rec.rpm, 
-                (float)rec.throttle, 
-                (float)rec.accel_lon, 
-                (float)rec.accel_lat
+                (float)rec.time, (float)rec.speed, (float)rec.rpm, 
+                (float)rec.throttle, (float)rec.accel_lon, (float)rec.accel_lat
             };
-
-            // Предсказание
             ClassificationResult res = classifier.classify(features);
 
-            if (res.label == rec.driver_style) correct++;
+            // 4. Отрисовка Dashboard
+            // Передаем результат нейросети (res.label) для индикации на панели
+            dash.draw(frame, rec, res.label, res.confidence);
 
-            // Вывод строки
-            std::cout << std::left << std::setw(8) << random_idx
-                      << std::setw(10) << rec.driver_style 
-                      << std::setw(10) << res.label 
-                      << std::fixed << std::setprecision(2) << std::setw(15) << (res.confidence * 100.0f)
-                      << "[" << std::setprecision(3) << res.scores[0] << ", " 
-                      << res.scores[1] << ", " << res.scores[2] << "]" << std::endl;
+            // Служебная информация на экране
+            std::string info = "Rec: " + std::to_string(i) + " / " + std::to_string(total_records);
+            cv::putText(frame, info, cv::Point(10, 25), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(200, 200, 200), 1);
+
+            // 5. Вывод изображения
+            cv::imshow(win_name, frame);
+
+            // Управление воспроизведением
+            int key = cv::waitKey(30);
+            if (key == 27) break; // ESC - выход
+            if (key == 32) cv::waitKey(0); // Space - пауза
         }
 
-        // --- ЧАСТЬ 4: ИТОГИ ---
-        std::cout << std::string(90, '-') << std::endl;
-        double accuracy = (correct * 100.0) / test_count;
-        std::cout << "RANDOM VALIDATION RESULT: " << correct << "/" << test_count 
-                  << " correct. Accuracy: " << accuracy << "%" << std::endl;
-        
-        // Общая статистика распределения классов в данных
-        int stats[3] = {0, 0, 0};
-        for (int i = 0; i < total_records; ++i) {
-            stats[parser.getRecord(i).driver_style]++;
-        }
-        std::cout << "\nOVERALL DATA DISTRIBUTION: Slow: " << stats[0] 
-                  << " | Normal: " << stats[1] << " | Aggressive: " << stats[2] << std::endl;
-        std::cout << std::string(90, '=') << std::endl;
+        cv::destroyAllWindows();
+        std::cout << "[+] Playback finished." << std::endl;
 
     } catch (const std::exception& e) {
-        std::cerr << "\n[!] EXCEPTION: " << e.what() << std::endl;
+        std::cerr << "[!] CRITICAL ERROR: " << e.what() << std::endl;
         return -1;
     }
 
