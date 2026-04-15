@@ -1,105 +1,93 @@
 #include <iostream>
 #include <vector>
-#include <map>
-#include <iomanip>
 #include <opencv2/opencv.hpp>
-#include <filesystem>
 #include "obd_parser.h"
 #include "onnx_classifier.h"
 #include "dashboard.h"
-
-namespace fs = std::filesystem;
-
-// Функция для быстрого вывода статистики разметки в консоль
-void printGroundTruthStats(const OBDParser& parser) {
-    std::map<int, int> stats;
-    int total = parser.getCount();
-    for (int i = 0; i < total; ++i) {
-        stats[parser.getRecord(i).driver_style]++;
-    }
-
-    std::string names[] = {"SLOW", "NORMAL", "AGGRESSIVE"};
-    std::cout << "\n--- Parser Labeling Statistics (Ground Truth) ---" << std::endl;
-    for (int i = 0; i <= 2; ++i) {
-        double percent = (total > 0) ? (static_cast<double>(stats[i]) / total * 100.0) : 0;
-        std::cout << names[i] << ": " << stats[i] << " frames (" 
-                  << std::fixed << std::setprecision(1) << percent << "%)" << std::endl;
-    }
-    std::cout << "------------------------------------------------\n" << std::endl;
-}
+#include "dms_monitor.h"
+#include "dms_hud.h"
 
 int main() {
     try {
-        // 1. Инициализация компонентов
         OBDParser parser;
         Dashboard dash(640, 480);
-        
-        std::string inputPath = "data/telemetry.csv";
-        std::string outputPath = "data/processed_telemetry.csv";
+        if (parser.load("data/telemetry.csv") == -1) return -1;
 
-        // Загружаем данные
-        if (parser.load(inputPath) == -1) {
-            std::cerr << "[-] Error: " << inputPath << " not found!" << std::endl;
-            return -1;
-        }
-        std::cout << "[+] Telemetry loaded: " << parser.getCount() << " records." << std::endl;
-
-        // --- ВОТ ТУТ МЫ ВОЗВРАЩАЕМ СОХРАНЕНИЕ ---
-        printGroundTruthStats(parser);
-        if (parser.save(outputPath)) {
-            std::cout << "[+] Processed data for training saved to: " << outputPath << std::endl;
-        } else {
-            std::cerr << "[-] Warning: Could not save " << outputPath << " (Check if file is open in Excel!)" << std::endl;
-        }
-
-        // Загружаем нейронку
-        // Убедись, что файлы .onnx и .json лежат в папке models/
         ONNXClassifier classifier("models/driver_classifier.onnx", "models/normalization_params.json");
-        std::cout << "[+] System initialized. Starting playback..." << std::endl;
 
-        // 2. Основной цикл визуализации
-        int total_records = parser.getCount();
-        std::string win_name = "ADAS Real-Time Monitor";
+        cv::VideoCapture cap(0); 
+        DMSMonitor dms("models/deploy.prototxt", 
+                       "models/res10_300x300_ssd_iter_140000.caffemodel", 
+                       "models/haarcascade_eye.xml");
+        DMSHUD dms_hud;
+
+        std::string win_name = "ADAS Integrated System";
         cv::namedWindow(win_name, cv::WINDOW_AUTOSIZE);
 
-        for (int i = 0; i < total_records; ++i) {
-            // Создаем черный фон (640x480)
-            cv::Mat frame = cv::Mat::zeros(480, 640, CV_8UC3);
+        for (int i = 0; i < parser.getCount(); ++i) {
+            cv::Mat cam_frame_raw, cam_final;
+            DriverState dms_state;
 
-            // Получаем текущую запись
+            // --- 1. ОБРАБОТКА КАМЕРЫ ---
+            if (cap.isOpened()) {
+                cap >> cam_frame_raw;
+                if (!cam_frame_raw.empty()) {
+                    cv::rotate(cam_frame_raw, cam_frame_raw, cv::ROTATE_90_COUNTERCLOCKWISE);
+                    
+                    int target_h = 480; 
+                    int target_w = static_cast<int>(target_h * (static_cast<float>(cam_frame_raw.cols) / cam_frame_raw.rows));
+                    
+                    cv::resize(cam_frame_raw, cam_final, cv::Size(target_w, target_h));
+                    cv::flip(cam_final, cam_final, 1);
+
+                    dms_state = dms.analyze(cam_final);
+                    // Рисуем рамку лица, но БЕЗ текста сверху (текст вынесем в main)
+                    dms_hud.draw(cam_final, dms_state); 
+                }
+            }
+
+            // --- 2. ГЕОМЕТРИЯ ОКНА ---
+            // Судя по твоему скрину, приборы реально заканчиваются на 320-350 пикселях. 
+            // Попробуем поставить 350 для плотной стыковки.
+            int dash_visible_width = 350; 
+            int total_width = dash_visible_width + (cam_final.empty() ? 0 : cam_final.cols);
+            
+            cv::Mat main_frame = cv::Mat::zeros(480, total_width, CV_8UC3);
+
+            // --- 3. ОТРИСОВКА ПРИБОРОВ ---
+            cv::Mat dash_zone = main_frame(cv::Rect(0, 0, dash_visible_width, 480));
             OBDRecord rec = parser.getRecord(i);
-
-            // 3. Инференс нейросети (предсказание модели в реальном времени)
-            std::vector<float> features = {
-                (float)rec.time, (float)rec.speed, (float)rec.rpm, 
-                (float)rec.throttle, (float)rec.accel_lon, (float)rec.accel_lat
-            };
+            std::vector<float> features = {(float)rec.time, (float)rec.speed, (float)rec.rpm, 
+                                           (float)rec.throttle, (float)rec.accel_lon, (float)rec.accel_lat};
             ClassificationResult res = classifier.classify(features);
+            dash.draw(dash_zone, rec, res.label, res.confidence);
 
-            // 4. Отрисовка Dashboard
-            // Передаем результат нейросети (res.label) для индикации на панели
-            dash.draw(frame, rec, res.label, res.confidence);
+            // --- 4. ВСТАВКА ВЕБКИ ВПРИТЫК ---
+            if (!cam_final.empty()) {
+                cv::Mat dms_zone = main_frame(cv::Rect(dash_visible_width, 0, cam_final.cols, 480));
+                cam_final.copyTo(dms_zone);
 
-            // Служебная информация на экране
-            std::string info = "Rec: " + std::to_string(i) + " / " + std::to_string(total_records);
-            cv::putText(frame, info, cv::Point(10, 25), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(200, 200, 200), 1);
+                // --- 5. ТЕКСТ ПО ЦЕНТРУ СВЕРХУ НА ТЕМНОМ ФОНЕ ---
+                // Рисуем статус глаз прямо на main_frame, чтобы он был над видео
+                std::string eye_label = dms_state.eyes_open ? "EYES: OPEN" : "EYES: CLOSED";
+                cv::Scalar eye_color = dms_state.eyes_open ? cv::Scalar(0, 255, 0) : cv::Scalar(0, 0, 255);
+                
+                // Вычисляем центр зоны вебки для текста
+                int text_x = dash_visible_width + (cam_final.cols / 2) - 80; 
+                cv::putText(main_frame, eye_label, cv::Point(text_x, 30), 
+                            cv::FONT_HERSHEY_SIMPLEX, 0.8, eye_color, 2);
+            }
 
-            // 5. Вывод изображения
-            cv::imshow(win_name, frame);
-
-            // Управление воспроизведением
+            cv::imshow(win_name, main_frame);
+            
             int key = cv::waitKey(30);
-            if (key == 27) break; // ESC - выход
-            if (key == 32) cv::waitKey(0); // Space - пауза
+            if (key == 27) break;
+            if (key == 32) cv::waitKey(0);
         }
-
-        cv::destroyAllWindows();
-        std::cout << "[+] Playback finished." << std::endl;
-
+        cap.release();
     } catch (const std::exception& e) {
-        std::cerr << "[!] CRITICAL ERROR: " << e.what() << std::endl;
+        std::cerr << "Error: " << e.what() << std::endl;
         return -1;
     }
-
     return 0;
 }

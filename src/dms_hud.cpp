@@ -18,7 +18,7 @@ void DMSHUD::draw(cv::Mat& frame, const DriverState& state) {
     }
 
     // 2. Индикаторы состояния
-    cv::putText(frame, "EYES: " + std::string(state.eyes_open ? "OPEN" : "CLOSED"), {20, 60}, 0, 0.6, color, 2);
+    //cv::putText(frame, "EYES: " + std::string(state.eyes_open ? "OPEN" : "CLOSED"), {20, 60}, 0, 0.6, color, 2);
 
     // 3. Алерты
     if (state.alert_drowsy) {
